@@ -142,11 +142,11 @@
 	    						<div class="blog-entry ftco-animate">
 	    							<a href="{% url 'blog:detail' post.slug %}" class="img" style="background-image: url(' {{post.thumbnail.url}}');"></a>
 	    							<div class="text pt-2 mt-3">
-					          	<span class="category mb-1 d-block"><a href="#">{{post.category_published}}</a></span>
+					          	<span class="category mb-1 d-block">{% for cat in post.category_published %}<a href="#">{{cat.title}}</a> {% endfor %}</span>
 				              <h3 class="mb-4"><a href="{% url 'blog:detail' post.slug %}">{{post.title}}</a></h3>
 				              <p class="mb-4">{{post.description|truncatewords:30}}</p>
 				              <div class="author mb-4 d-flex align-items-center">
-				            		<a href="#" class="img" style="background-image: url(' {% static "blog/images/person_1.jpg" %} ');"></a>
+				            		<a href="{% url 'blog:detail' post.slug %}" class="img" style="background-image: url(' {% static "blog/images/person_1.jpg" %} ');"></a>
 				            		<div class="ml-3 info">
 				            			<span>نوشته شده توسط</span>
 				            			<h3><a href="#">ادمین</a>, <span>{{post.jpublish}}</span></h3>
@@ -161,7 +161,7 @@
 					              	</p>
 				              	</div>
 				              	<div class="half">
-					              	<p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">ادامه مطلب...</a></p>
+					              	<p><a href="{% url 'blog:detail' post.slug %}" class="btn btn-primary p-3 px-xl-4 py-xl-3">ادامه مطلب...</a></p>
 				              	</div>
 				              </div>
 				            </div>

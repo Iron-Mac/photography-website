@@ -10,7 +10,9 @@ class PostManager(models.Manager):
     def published(self):
         return self.filter(status='p')
 
-
+class CategoryManager(models.Manager):
+    def active(self):
+        return self.filter(status=True)
 
 
 
@@ -44,7 +46,7 @@ class Post(models.Model):
     publish = models.DateField(("منتشر شده"), default=timezone.now)
     created = models.DateField(("ساخته شده"), auto_now_add=True)
     updated = models.DateField(("ساخته شده"), auto_now=True)
-    category = models.ManyToManyField(Category, verbose_name=("دسته‌بندی"))
+    category = models.ManyToManyField(Category, verbose_name=("دسته‌بندی"), related_name="posts")
     status = models.CharField(("وضعیت"), max_length=1, choices=STATUS_CHOISES)
 
     class Meta:

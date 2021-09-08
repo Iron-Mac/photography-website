@@ -1,5 +1,5 @@
 {% extends 'blog/base.html' %}
-
+{% load static %}
 {% block main %}
 
 		<div id="colorlib-main">
@@ -8,8 +8,8 @@
 				<div class="js-fullheight d-flex justify-content-center align-items-center">
 					<div class="col-md-8 text text-center">
 						<div class="desc">
-							<h1 class="mb-4">Blog Details</h1>
-							<p><a href="index" class="btn-custom mr-2">Home <span class="ion-ios-arrow-forward"></span></a> <a href="index" class="btn-custom mr-2">Blog <span class="ion-ios-arrow-forward"></span></a> <a href="index" class="btn-custom">Single <span class="ion-ios-arrow-forward"></span></a></p>
+							<h1 class="mb-4">{{object.title}}</h1>
+							<p><a href="{% url 'blog:home' %}" class="btn-custom mr-2">خانه <span class="ion-ios-arrow-forward"></span></a> <a href="{% url 'blog:home' %}" class="btn-custom mr-2">وبلاگ </a></p>
 						</div>
 					</div>
 				</div>
@@ -17,25 +17,24 @@
 			<section class="ftco-section">
 	    	<div class="container">
 	    		<div class="row">
-	    			<div class="col-lg-8 ftco-animate">
-	            <h2 class="mb-3 font-weight-bold">{{object.title}}</h2>
-	            <p>{{object.description}}</p>
+	    			<div class="col-lg-12 ftco-animate postcontent">
+	            <p>{{object.description|linebreaks}}</p>
 	            <div class="tag-widget post-tag-container mb-5 mt-5">
 	              <div class="tagcloud">
-	                <a href="#" class="tag-cloud-link">Life</a>
-	                <a href="#" class="tag-cloud-link">Sport</a>
-	                <a href="#" class="tag-cloud-link">Tech</a>
-	                <a href="#" class="tag-cloud-link">Travel</a>
+				  {% for cat in object.category_published %}
+				    <a href="{% url 'blog:category' cat.slug %}" class="tag-cloud-link">{{cat.title}}</a>
+				  {% endfor %}
+	              
 	              </div>
 	            </div>
 	            
 	            <div class="about-author d-flex p-4 bg-light">
 	              <div class="bio mr-5">
-	                <img src="images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4">
+	                <img src="{% static 'blog/images/person_1.jpg' %}" alt="Image placeholder" class="img-fluid mb-4">
 	              </div>
 	              <div class="desc">
-	                <h3>George Washington</h3>
-	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+	                <h3>ادمین ارشد</h3>
+	                <p>عضو انجمن نگارخانه ی زیبا| برنده ی جایزه ی نقره ای| سابقه تبلیغاتی </p>
 	              </div>
 	            </div>
 
@@ -48,9 +47,9 @@
 	                    <img src="images/person_1.jpg" alt="Image placeholder">
 	                  </div>
 	                  <div class="comment-body">
-	                    <h3>John Doe</h3>
+	                    <h3>ممد</h3>
 	                    <div class="meta">October 03, 2018 at 2:21pm</div>
-	                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+	                    <p>مقاله ی بسیار ممدانه ای بود واقعا لذت بردیم</p>
 	                    <p><a href="#" class="reply">Reply</a></p>
 	                  </div>
 	                </li>
@@ -151,8 +150,8 @@
 	                </form>
 	              </div>
 	            </div>
-	          </div> <!-- .col-md-8 -->
-	    			<div class="col-lg-4 sidebar ftco-animate">
+	          </div> <!-- .col-md-8 
+			  <div class="col-lg-4 sidebar ftco-animate">
 	            <div class="sidebar-box">
 	              <form action="#" class="search-form">
 	                <div class="form-group">
@@ -252,7 +251,8 @@
 	              <h3 class="sidebar-heading">Paragraph</h3>
 	              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut.</p>
 	            </div>
-	          </div><!-- END COL -->
+	          </div>
+	    			 END COL -->
 	    		</div>
 	    	</div>
 	    </section>

@@ -7585,7 +7585,7 @@ h1, h2, h3, h4, h5,
     right: 0;
     bottom: 0;
     content: '';
-    opacity: .4;
+    opacity: .2;
     background: #fff;
     z-index: 0; }
   .hero-wrap.hero-wrap-2 .overlay {
@@ -7608,7 +7608,11 @@ h1, h2, h3, h4, h5,
       font-weight: 300; }
     .hero-wrap .text h1 {
       letter-spacing: 1px;
-      font-weight: 900; }
+      font-weight: 900; 
+      font-family: Sahel;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 25px;
+  }
     .hero-wrap .text .btn-custom {
       font-weight: 400;
       color: #b3b3b3;
@@ -8044,10 +8048,15 @@ textarea.form-control {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
-  border-radius: 50%; }
+  border-radius: 50%;
+  max-height: 130px;
+  padding: 10px;
+  }
 
 .about-author .desc h3 {
-  font-size: 20px; }
+  font-size: 18px;
+  font-family: Sahel;
+  font-weight: bold }
 
 .ftco-section {
   padding: 6em 1.8em;

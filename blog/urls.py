@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.urls import path
-from .views import PostList ,PostDetail
+from .views import PostList ,PostDetail,CategoryList
 
 app_name="blog"
 urlpatterns = [
     path('',PostList.as_view(),name="home"),
     path('post/<slug:slug>',PostDetail.as_view(),name="detail"),
+    path('category/<slug:slug>',CategoryList.as_view(),name="category"),
 ]
 
 from django.conf import settings
