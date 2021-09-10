@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+
+{% block main %}
+
+		<div id="colorlib-main">
+			<section class="ftco-section-2">
+				<div class="photograhy">
+					<div class="row no-gutters">
+						<div class="col-md-3">
+							<a href="#" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/image_1.jpg);">
+								<div class="overlay"></div>
+								<div class="text text-center">
+									<h3>Work 01</h3>
+									<span>Technology</span>
+								</div>
+							</a>
+						</div>
+						{% for photo in object_list %}
+						<div class="col-md-3">
+							<a href="#" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url({{photo.photo.url}});">
+								<div class="overlay"></div>
+								<div class="text text-center">
+									<h3>Work 02</h3>
+									<span>{{photo.title}}</span>
+								</div>
+							</a>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+
+
+{% endblock main %}
+

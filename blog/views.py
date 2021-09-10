@@ -1,3 +1,5 @@
+from re import template
+from django.db import models
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView, DetailView
 from .models import Category, Post
@@ -24,7 +26,7 @@ class CategoryList(ListView):
     def get_queryset(self):
         global category
         slug = self.kwargs.get('slug')
-        category = get_object_or_404(Category.objects.all(), slug=slug)
+        category = get_object_or_404(Category.objects.active(), slug=slug)
         return category.posts.published()
 
     def get_context_data(self, **kwargs):

@@ -7,7 +7,7 @@ urlpatterns = [
     path('',PostList.as_view(),name="home"),
     path('post/<slug:slug>',PostDetail.as_view(),name="detail"),
     path('category/<slug:slug>',CategoryList.as_view(),name="category"),
-]
+    ]
 
 from django.conf import settings
 from django.conf.urls.static import static
