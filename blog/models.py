@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.expressions import OrderBy
 from django.db.models.fields import CharField
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import format_html
 from extentions.utils import jalali_converter
@@ -56,6 +57,7 @@ class Post(models.Model):
     class Meta:
         verbose_name="پست"
         verbose_name_plural="پست ها"
+        ordering=['-created']
 
 
     def __str__(self):
@@ -71,5 +73,13 @@ class Post(models.Model):
 
     def category_published(self):
         return self.category.filter(status=True)
+    
+    def category_to_str(self):
+        return ", ".join([category.title for category in self.category_published()])
+    category_to_str.short_description = "دسته‌بندی"
+
+    #def get_absolute_url(self):
+       # return reverse("account:home")
+    
 
     objects = PostManager()

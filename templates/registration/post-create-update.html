@@ -1,0 +1,50 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}لیست پست ها{% endblock title %}
+
+{% block main %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-check"></i>عملیات موفقیت آمیز</h5>
+                  {{message}}     | <a href="{% url 'account:home' %}" class="badge badge-warning" style="color:black !important;text-decoration:none;" > مشاهده در لیست پست ها </a>
+                </div>
+{% endfor %}
+{% endif %}
+<form method="post" enctype="multipart/form-data"> {% csrf_token %}
+<div class="form-row">
+      <div class="form-group col-md-6 mb-0">
+        {{ form.title|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        {{ form.slug|as_crispy_field }}
+      </div>   
+        <div class="form-group col-md-12 mb-0">
+        {{ form.description|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        {{ form.category|as_crispy_field }}
+      </div>
+    <div class="form-group col-md-6 mb-0">
+        {{ form.thumbnail|as_crispy_field }}
+        {{ form.publish|as_crispy_field }}
+      </div>
+      {% if user.is_superuser %}
+            <div class="form-group col-md-6 mb-0">
+        {{ form.author|as_crispy_field }}
+      </div>{% endif %}
+            <div class="form-group col-md-6 mb-0">
+        {{ form.status|as_crispy_field }}
+      </div>
+    </div> 
+
+    
+    
+       <button class="btn btn-success">ارسال پست</button>
+
+</form>
+
+           {% endblock main %}

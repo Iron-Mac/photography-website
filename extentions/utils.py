@@ -6,7 +6,7 @@ def jalali_converter(time):
     
     jmonth=["فروردین","اردیبهشت","خرداد","تیر","مرداد","شهریور","مهر","آبان","آذر"," دی"," بهمن"," اسفند"]
 
-
+    time = timezone.localtime(time)
 
     time_to_str = f"{time.year},{time.month},{time.day}"
     time_to_tuple= jalali.Gregorian(time_to_str).persian_tuple()
